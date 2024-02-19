@@ -7,6 +7,8 @@ const availableSeat = 40;
 let totalSeatFare = 0;
 
 let selectedSeats = 0;
+const seatType = "Economy";
+const seatFare = 550;
 
 for (const seat of seats) {
   seat.addEventListener("click", function () {
@@ -17,9 +19,6 @@ for (const seat of seats) {
       selectedSeats++;
 
       let seatName = seat.innerText;
-      const seatType = "Economy";
-      const seatFare = 550;
-
       totalSeatFare = seatFare;
 
       if (selectedSeats == 1) {
@@ -72,21 +71,24 @@ for (const seat of seats) {
         document.getElementById("total-price").innerText = totalSeatFare * 4;
         document.getElementById("grand-total").innerText = totalSeatFare * 4;
       }
-    
-      
-      let couponInputField = document.getElementById('coupon-input')
-      let grandTotal = document.getElementById('grand-total').innerText
-      
-      document.getElementById('coupon-apply').addEventListener("click", function(){
-          if(couponInputField.value === 'NEW15'){
-            grandTotal = parseInt(grandTotal*0.85)
-            document.getElementById('grand-total').innerText = grandTotal
+
+      let couponInputField = document.getElementById("coupon-input");
+      let grandTotal = document.getElementById("grand-total").innerText;
+
+      document
+        .getElementById("coupon-apply")
+        .addEventListener("click", function () {
+          if (couponInputField.value === "") {
+            alert("Please input a coupon code.");
+            return;
+          } else if (couponInputField.value === "NEW15") {
+            grandTotal = parseInt(grandTotal * 0.85);
+            document.getElementById("grand-total").innerText = grandTotal;
+          } else if (couponInputField.value === "Couple 20") {
+            grandTotal = parseInt(grandTotal * 0.8);
+            document.getElementById("grand-total").innerText = grandTotal;
           }
-          else if(couponInputField.value === 'Couple 20'){
-            grandTotal = parseInt(grandTotal*0.80)
-            document.getElementById('grand-total').innerText = grandTotal
-          }
-      })
+        });
     }
     updateSeatCount();
   });
@@ -99,20 +101,3 @@ function updateSeatCount() {
   document.getElementById("selected-seat").textContent = selectedCount;
   document.getElementById("available-seat").textContent = availableCount;
 }
-
-
-
-/* let couponApplyButton = document.getElementById('coupon-apply')
-let couponInputField = document.getElementById('coupon-input')
-let grandTotal = document.getElementById('grand-total').innerText
-
-document.getElementById('coupon-apply').addEventListener("click", function(){
-    if(couponInputField.value === 'NEW15'){
-        grandTotal = grandTotal*0.15
-        document.getElementById('grand-total').innerText = grandTotal
-    }
-    else if(couponInputField.value === 'Couple 20'){
-        grandTotal = grandTotal*0.20
-    }
-}) */
-console.log(totalSeatFare)
