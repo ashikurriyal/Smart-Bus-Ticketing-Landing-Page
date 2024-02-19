@@ -78,15 +78,18 @@ for (const seat of seats) {
       document
         .getElementById("coupon-apply")
         .addEventListener("click", function () {
-          if (couponInputField.value === "") {
-            alert("Please input a coupon code.");
-            return;
-          } else if (couponInputField.value === "NEW15") {
+           if (couponInputField.value === "NEW15") {
             grandTotal = parseInt(grandTotal * 0.85);
             document.getElementById("grand-total").innerText = grandTotal;
+            document.getElementById('coupon-hide').classList.add("hidden")
           } else if (couponInputField.value === "Couple 20") {
             grandTotal = parseInt(grandTotal * 0.8);
             document.getElementById("grand-total").innerText = grandTotal;
+            document.getElementById('coupon-hide').classList.add("hidden")
+          }
+          else{
+            alert("Please input a coupon code.");
+            
           }
         });
     }
